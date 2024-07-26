@@ -151,42 +151,51 @@ def addUser():
 
 @app.route('/api/faceEnroll', methods=["POST"])
 def enrollUser():
-    try:
-        data = request.get_json(force=True)
-        app.logger.info(f"Received data: {data}")
+    data = request.get_json(force=True)
+    facialData = data.get('userFace')
+    decode_facial = base64.b64decode(facialData)
+    filename = secure_filename(data.get('filename'))
 
-        email = data.get('userEmail')
-        facialData = data.get('userFace')
-        filename = secure_filename(data.get('filename'))
+    procesImage(decode_facial, path, filename)
 
-        if not all([email, facialData, filename]):
-            return jsonify({"error": "Incomplete data provided"}), 400
+    return jsonify({"message": "Facial data added"}), 200
 
-        file_path = f"{path}/{filename}"
-        decode_facial = base64.b64decode(facialData)
-        enroll_face_results = enroll_face(
-            input_type="picture", file=convert_base64_npArray(decode_facial, f"{imageName}.jpg"))
+    # try:
+    #     data = request.get_json(force=True)
+    #     app.logger.info(f"Received data: {data}")
 
-        # Save picture
-        if enroll_face_results.status:
-            # with open(os.path.join(path, filename), 'wb') as f:
-            #     f.write(decode_facial)
-            procesImage(decode_facial, path, filename)
-            database = load_database()
-            for usermail in database['users']:
-                if email == database["email"]:
-                    usermail['facial_data'] = file_path
-                    break
-            save_database(database)
-            delete_files_in_directory(tempFolder)
+    #     email = data.get('userEmail')
+    #     facialData = data.get('userFace')
+    #     filename = secure_filename(data.get('filename'))
 
-            return jsonify({"message": "Facial data added"}), 200
-        else:
-            return jsonify({"error": ""}), 400
+    #     if not all([email, facialData, filename]):
+    #         return jsonify({"error": "Incomplete data provided"}), 400
 
-    except Exception as err:
-        app.logger.error(f"An error occurred: {str(err)}")
-        return jsonify({"error": str(err)}), 500
+    #     file_path = f"{path}/{filename}"
+    #     decode_facial = base64.b64decode(facialData)
+    #     enroll_face_results = enroll_face(
+    #         input_type="picture", file=convert_base64_npArray(decode_facial, f"{imageName}.jpg"))
+
+    #     # Save picture
+    #     if enroll_face_results.status:
+    #         # with open(os.path.join(path, filename), 'wb') as f:
+    #         #     f.write(decode_facial)
+    #         procesImage(decode_facial, path, filename)
+    #         database = load_database()
+    #         for usermail in database['users']:
+    #             if email == database["email"]:
+    #                 usermail['facial_data'] = file_path
+    #                 break
+    #         save_database(database)
+    #         delete_files_in_directory(tempFolder)
+
+    #         return jsonify({"message": "Facial data added"}), 200
+    #     else:
+    #         return jsonify({"error": ""}), 400
+
+    # except Exception as err:
+    #     app.logger.error(f"An error occurred: {str(err)}")
+    #     return jsonify({"error": str(err)}), 500
 
 
 @app.route('/api/verifyUser', methods=["POST"])

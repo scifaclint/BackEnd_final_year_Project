@@ -35,6 +35,7 @@ def save_database(data):
 
 
 def enroll_face(input_type, file):
+
     """
     Enroll a user's face based on the input type and file.
 
@@ -139,8 +140,10 @@ def convert_base64_npArray(base, email):
     #     f.write(decode_facial)
     procesImage(base, tempPath, filename)
     print("image Saved")
-    print(f"{tempPath}/{filename}")
-    return (f"{tempPath}/{filename}")
+    print(f"{tempPath}{filename}")
+    data = f"{tempPath}{filename}"
+    print(type(data))
+    return (f"{tempPath}{filename}")
 
 
 # clean tempfiles
@@ -167,8 +170,8 @@ def procesImage(base64_string, output_path, filename):
         # Convert to RGB if it's not already
         if img.mode != 'RGB':
             img = img.convert('RGB')
+            print("image was not RGB")
         full_path = os.path.join(output_path, filename)
+        print(full_path)
         # Save the image
         img.save(full_path)
-
-   
