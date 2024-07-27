@@ -1,14 +1,11 @@
 from flask import Flask, jsonify, request
-from facialmodel import load_database, save_database, enroll_face, compare_faces, convert_base64_npArray, delete_files_in_directory
+from facialmodel import load_database, save_database, get_userData
 from facialmodel import procesImage
 from werkzeug.utils import secure_filename
-import os
-import sys
-import base64
+from model import model
 import json
 import logging
 from flask_cors import CORS
-
 
 app = Flask(__name__)
 CORS(app)
@@ -18,8 +15,6 @@ logging.basicConfig(level=logging.DEBUG)
 
 # Set the upload path
 path = "./uploads"
-tempFolder = "./tempfiles"
-imageName = "temImage"
 
 
 def getId(list):
@@ -64,71 +59,62 @@ def transfer():
     userData = load_database()
 
     if request_data['type'] == "login":
+        userface = request_data['userFace']
+        email = request_data['userEmail']
+        user_data = get_userData(email)
+        path_to_existing_face = user_data['facial_data']
 
-       # Load existing data
+        comparison_results = model.compare_faces(
+            userface, path_to_existing_face)
+        if comparison_results["status"] and (comparison_results['confidence'] > 90):
 
-        # Get sender data
-        getSenderData = next(
-            (user for user in userData['users'] if user["email"] == sender), None)
-
-        if not getSenderData:
-            return jsonify({"error": "Sender not found"}), 404
-
-        senderExistFace = getSenderData['facial_data']
-        senderNewFace = convert_base64_npArray(
-            request_data['userFace'], "tempfile.jpg")
-
-        # compare facial data
-        comparison_result = compare_faces(
-            stored_facial_data=senderExistFace, new_facial_data=senderNewFace)
-
-        if comparison_result.status:
-            return jsonify({"message": "matched"}), 200
+            return jsonify({"status": True, "message": "Faces matche"}), 200
         else:
-            return jsonify({"message": "error"}), 400
+            return jsonify({"status": False, "message": "Face did not matched"})
 
-    try:
-        app.logger.info(f"Received data: {request_data}")
-        sender = request_data.get("sender")
-        receiver = request_data.get("receiver")
-        amount = request_data.get('addToReceiver')
-        transactions = request_data.get('transactions')
-        substractSendr = request_data.get("subsctractSender")
+    else:
+        try:
+            app.logger.info(f"Received data: {request_data}")
+            sender = request_data.get("sender")
+            receiver = request_data.get("receiver")
+            amount = request_data.get('addToReceiver')
+            transactions = request_data.get('transactions')
+            substractSendr = request_data.get("subsctractSender")
 
-        if request_data:
-            # update receiver
-            for userD in userData['users']:
-                if receiver == userD['email']:
-                    userD['balance'] = userD['balance'] + amount
-                    userD['transactions'].append({
-                        "id": getId(userD['transactions']),
-                        "type": "received",
-                        "amount": amount,
-                        "date": transactions['date']
-                    })
-                    break
+            if request_data:
+                # update receiver
+                for userD in userData['users']:
+                    if receiver == userD['email']:
+                        userD['balance'] = userD['balance'] + amount
+                        userD['transactions'].append({
+                            "id": getId(userD['transactions']),
+                            "type": "received",
+                            "amount": amount,
+                            "date": transactions['date']
+                        })
+                        break
 
-            for userD in userData['users']:
-                # Update sender data
-                if sender == userD['email']:
-                    userD['balance'] = userD['balance'] - \
-                        substractSendr
-                    userD['transactions'].append({
-                        "id": getId(userD['transactions']),
-                        "type": "paid",
-                        "amount": amount,
-                        "date": transactions['date']
-                    })
-                    break
+                for userD in userData['users']:
+                    # Update sender data
+                    if sender == userD['email']:
+                        userD['balance'] = userD['balance'] - \
+                            substractSendr
+                        userD['transactions'].append({
+                            "id": getId(userD['transactions']),
+                            "type": "paid",
+                            "amount": amount,
+                            "date": transactions['date']
+                        })
+                        break
 
-        # now save data
-        save_database(userData)
+            # now save data
+            save_database(userData)
 
-        return jsonify({"message": "Transaction Complete"}), 200
+            return jsonify({"message": "Transaction Complete"}), 200
 
-    except Exception as e:
-        app.logger.error(f"An error occurred: {str(e)}")
-        return jsonify({"error": str(e)}), 500
+        except Exception as e:
+            app.logger.error(f"An error occurred: {str(e)}")
+            return jsonify({"error": str(e)}), 500
 
 
 @app.route('/api/addUser', methods=["POST"])
@@ -151,79 +137,28 @@ def addUser():
 
 @app.route('/api/faceEnroll', methods=["POST"])
 def enrollUser():
-    data = request.get_json(force=True)
-    facialData = data.get('userFace')
-    decode_facial = base64.b64decode(facialData)
-    filename = secure_filename(data.get('filename'))
+    request_data = request.get_json(force=True)
+    userface = request_data['userFace']
+    userEmail = request_data['userEmail']
+    filename = secure_filename(request_data['filename'])
 
-    procesImage(decode_facial, path, filename)
-
-    return jsonify({"message": "Facial data added"}), 200
-
-    # try:
-    #     data = request.get_json(force=True)
-    #     app.logger.info(f"Received data: {data}")
-
-    #     email = data.get('userEmail')
-    #     facialData = data.get('userFace')
-    #     filename = secure_filename(data.get('filename'))
-
-    #     if not all([email, facialData, filename]):
-    #         return jsonify({"error": "Incomplete data provided"}), 400
-
-    #     file_path = f"{path}/{filename}"
-    #     decode_facial = base64.b64decode(facialData)
-    #     enroll_face_results = enroll_face(
-    #         input_type="picture", file=convert_base64_npArray(decode_facial, f"{imageName}.jpg"))
-
-    #     # Save picture
-    #     if enroll_face_results.status:
-    #         # with open(os.path.join(path, filename), 'wb') as f:
-    #         #     f.write(decode_facial)
-    #         procesImage(decode_facial, path, filename)
-    #         database = load_database()
-    #         for usermail in database['users']:
-    #             if email == database["email"]:
-    #                 usermail['facial_data'] = file_path
-    #                 break
-    #         save_database(database)
-    #         delete_files_in_directory(tempFolder)
-
-    #         return jsonify({"message": "Facial data added"}), 200
-    #     else:
-    #         return jsonify({"error": ""}), 400
-
-    # except Exception as err:
-    #     app.logger.error(f"An error occurred: {str(err)}")
-    #     return jsonify({"error": str(err)}), 500
-
-
-@app.route('/api/verifyUser', methods=["POST"])
-def verifyFace_model():
     try:
-        request_data = request.get_json(force=True)
-        app.logger.info(f"Received data: {request_data}")
+        enrol_status = enrollUser(userface)
+        print(enrol_status)
+        if enrol_status['status'] and (enrol_status['faces'] == 1):
+            all_data = load_database()
+            procesImage(userface, path, filename)
+            for user in all_data['users']:
+                if userEmail == user['email']:
+                    user["facial_data"] = f"{path}/{filename}"
+                    break
+            save_database(all_data)
 
-        userEmail = request_data.get('email')
-        facial_data_new = request_data.get('userFace')
-
-        database = load_database()
-
-        for userData in database['users']:
-            if userEmail == userData['email']:
-                location_user_Face = userData['facial_data']
-                break
-        compare_results = compare_faces(
-            stored_facial_data=location_user_Face, new_facial_data=convert_base64_npArray(facial_data_new, "tempimage.jpg"))
-        if compare_results.status:
-            return jsonify({"message": "faces matched"}), 201
-        # Save new picture
+            return jsonify({"status": True, "message": "good to go!"})
         else:
-            return jsonify({"message": "faces not matched"}), 401
-
-        # Authenticate face
+            return jsonify({"status": False, "message": "No facial data in images"})
     except Exception as err:
-        return jsonify({"message": "error occured"}), 401
+        return jsonify({"status": False, "message": "Error Occured duing operations", "error": err})
 
 
 @app.errorhandler(Exception)
