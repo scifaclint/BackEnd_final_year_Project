@@ -31,7 +31,6 @@
       "lastname": "Clinton",
       "balance": 15299153.68,
       "email": "scitest@gmail.com",
-      "facial_data": "./uploads/scitest@gmail.com.jpg",
       "transactions": [
         {
           "id": 1,
@@ -123,7 +122,8 @@
           "amount": 20,
           "date": "7/12/2024"
         }
-      ]
+      ],
+      "facial_data": "dd501442961502eadc323efb8117efd8"
     },
     {
       "firstname": "Patol",
@@ -226,48 +226,6 @@
           "date": "2024-07-02"
         }
       ]
-    },
-    {
-      "firstname": "Komom",
-      "lastname": "Linkon",
-      "email": "linkmomotama@yahoo.com",
-      "balance": 870,
-      "transactions": []
-    },
-    {
-      "firstname": "Mike ",
-      "lastname": "Thysln",
-      "email": "tyronike@gmail.com",
-      "balance": 839.4,
-      "transactions": [
-        {
-          "id": 1,
-          "type": "paid",
-          "amount": 30,
-          "date": "7/7/2024"
-        }
-      ]
-    },
-    {
-      "firstname": "Newman",
-      "lastname": "Sellr",
-      "email": "scinkka@gmail.com",
-      "balance": 870,
-      "transactions": []
-    },
-    {
-      "firstname": "Hahaja",
-      "lastname": "Jsjjs",
-      "email": "vshsji@gmail.com",
-      "balance": 870,
-      "transactions": []
-    },
-    {
-      "firstname": "Jjjjsj",
-      "lastname": "Jsjss",
-      "email": "gghhjs@gmail.com",
-      "balance": 870,
-      "transactions": []
     }
   ]
 }

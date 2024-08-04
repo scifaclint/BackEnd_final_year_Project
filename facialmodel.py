@@ -2,7 +2,7 @@ import json
 from PIL import Image
 import os
 from io import BytesIO
-
+import base64
 from werkzeug.utils import secure_filename
 
 
@@ -21,7 +21,7 @@ def load_database():
         data = {"users": []}
 
 
-def get_userData(email):
+def get_userData(data,email):
     """_summary_
 
     Args:
@@ -30,11 +30,10 @@ def get_userData(email):
     Returns:
         _type_: dict object of user
     """
-    data = load_database()
     for user in data['users']:
         if email == user['email']:
             return user
-        break
+        
 
 
 def save_database(data):
@@ -45,13 +44,13 @@ def save_database(data):
 
 # process base64 image and save to rgb
 def procesImage(base64_string, output_path, filename):
-
-    with Image.open(BytesIO(base64_string)) as img:
+    image_data = base64.b64decode(base64_string)
+    with Image.open(BytesIO(image_data)) as img:
         # Convert to RGB if it's not already
         if img.mode != 'RGB':
             img = img.convert('RGB')
             print("image was not RGB")
         full_path = os.path.join(output_path, filename)
-        print(full_path)
         # Save the image
         img.save(full_path)
+        return full_path

@@ -14,9 +14,8 @@ url_compare = os.getenv("url_compare")
 def encode_image_to_base64(image_path):
     with open(image_path, 'rb') as image_file:
         image_data = image_file.read()
-        base64_encoded_data = base64.b64encode(image_data)
-        base64_string = base64_encoded_data.decode('utf-8')
-    return base64_string
+    base64_encoded_data = base64.b64encode(image_data)
+    return base64_encoded_data
 
 
 def enroll_face(image_64):
@@ -28,15 +27,12 @@ def enroll_face(image_64):
 
         })
         data = response.json()
-
-        # returns the length of faces detected
-        return {"status": True, "faces": len(data['faces'])}
+        return {"status": True, "data": data, "num_faces": len(data['faces'])}
     except Exception as err:
         return ({"status": False, "message": "Error occurred", "error": err})
 
 
-
-def compare_faces(image_64_new, old_userImage):
+def compare_faces(face_token, old_userImage):
     """_summary_
 
     Args:
@@ -46,16 +42,30 @@ def compare_faces(image_64_new, old_userImage):
     Returns:
         _type_: number of faces detected from api call
     """
-    image_64_old_image = encode_image_to_base64(old_userImage)
+
     try:
         response = requests.post(url_compare, {
             "api_key": api_key,
             "api_secret": api_secret,
-            "image_base64_1": image_64_new,
-            "image_base64_2": image_64_old_image
+            "face_token1": face_token,
+            "image_base64_2": old_userImage
 
         })
+        print(response.json())
         data = response.json()
         return ({"status": True, "confidence": data['confidence']})
     except Exception as err:
         return ({"status": False, "message": err})
+
+
+# face_token = 'dd501442961502eadc323efb8117efd8'
+# token2 = "0ed0794bd38925e33b3e85f2286b2b69"
+# with open('./uploads/scitest@gmail.com.jpg', 'rb') as f:
+#     image_base = f.read()
+#     f.close()
+
+# base_64 = base64.b64encode(image_base).decode('utf-8')
+
+# print(compare_faces(face_token, base_64))
+
+# # print(enroll_face(base_64))
