@@ -6,7 +6,6 @@ from model import model
 import json
 import logging
 from flask_cors import CORS
-import base64
 app = Flask(__name__)
 CORS(app)
 
@@ -127,15 +126,20 @@ def detect_analyse():
     base_64_image = request_data['image_base64']
     email = request_data['email']
     data = load_database()
+    data_faces = model.load_face_data()
     model_results = model.enroll_face(base_64_image)
 
     if model_results['status'] and model_results['num_faces'] == 1:
-        face_token = model_results['data']['faces'][0]['face_token']
-        for user in data['users']:
-            if email == user['email']:
-                user['facial_data'] = face_token
-                break
-        save_database(data)
+        # face_token = model_results['data']['faces'][0]['face_token']
+        # for user in data_faces['users']:
+        #     if email == user['email']:
+        #         user['facial_data'] = face_token
+        #         break
+        data_faces['users'].append({
+            "email": email,
+            "facial_data": base_64_image
+        })
+        model.save_face_data(data_faces)
         return jsonify({"status": True, "message": "facial data added successfully"}), 201
     else:
         return jsonify({"status": False, "message": "Errors Occured"}), 400
@@ -146,7 +150,7 @@ def compareAuth():
     request_data = request.get_json(force=True)
     base_64_image = request_data['image_base64']
     email = request_data['email']
-    data = load_database()
+    data = model.load_face_data()
 
     for user in data['users']:
         if email == user['email']:

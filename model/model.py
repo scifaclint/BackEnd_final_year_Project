@@ -2,7 +2,7 @@ import base64
 import requests
 from dotenv import load_dotenv
 import os
-
+import json
 load_dotenv()
 
 api_key = os.getenv("api_key")
@@ -47,7 +47,7 @@ def compare_faces(face_token, old_userImage):
         response = requests.post(url_compare, {
             "api_key": api_key,
             "api_secret": api_secret,
-            "face_token1": face_token,
+            "image_base64_1": face_token,
             "image_base64_2": old_userImage
 
         })
@@ -57,6 +57,16 @@ def compare_faces(face_token, old_userImage):
     except Exception as err:
         return ({"status": False, "message": err})
 
+
+def load_face_data():
+    with open("./faces.json", "r") as f:
+        data = json.load(f)
+        return data
+
+
+def save_face_data(data):
+    with open("./faces.json", "w") as f:
+        json.dump(data, f, indent=4)
 
 # face_token = 'dd501442961502eadc323efb8117efd8'
 # token2 = "0ed0794bd38925e33b3e85f2286b2b69"
@@ -68,4 +78,4 @@ def compare_faces(face_token, old_userImage):
 
 # print(compare_faces(face_token, base_64))
 
-# # print(enroll_face(base_64))
+# # print(enroll_face(bas

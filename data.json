@@ -1,231 +1,245 @@
 {
-  "users": [
-    {
-      "firstname": "Olivia",
-      "lastname": "Kim",
-      "balance": 6543.21,
-      "email": "nigga@gmail.com",
-      "transactions": [
+    "users": [
         {
-          "id": 1,
-          "type": "received",
-          "amount": 100,
-          "date": "2024-07-04"
+            "firstname": "Olivia",
+            "lastname": "Kim",
+            "balance": 6543.21,
+            "email": "nigga@gmail.com",
+            "transactions": [
+                {
+                    "id": 1,
+                    "type": "received",
+                    "amount": 100,
+                    "date": "2024-07-04"
+                },
+                {
+                    "id": 2,
+                    "type": "paid",
+                    "amount": 50,
+                    "date": "2024-07-03"
+                },
+                {
+                    "id": 3,
+                    "type": "received",
+                    "amount": 75,
+                    "date": "2024-07-02"
+                }
+            ]
         },
         {
-          "id": 2,
-          "type": "paid",
-          "amount": 50,
-          "date": "2024-07-03"
+            "firstname": "Acheampong",
+            "lastname": "Clinton",
+            "balance": 15299153.68,
+            "email": "scitest@gmail.com",
+            "transactions": [
+                {
+                    "id": 1,
+                    "type": "received",
+                    "amount": 100,
+                    "date": "2024-07-04"
+                },
+                {
+                    "id": 2,
+                    "type": "paid",
+                    "amount": 50,
+                    "date": "2024-07-03"
+                },
+                {
+                    "id": 3,
+                    "type": "received",
+                    "amount": 75,
+                    "date": "2024-07-02"
+                },
+                {
+                    "id": 4,
+                    "type": "paid",
+                    "amount": 75,
+                    "date": "2024-07-02"
+                },
+                {
+                    "id": 5,
+                    "type": "received",
+                    "amount": 20,
+                    "date": "2024-07-02"
+                },
+                {
+                    "id": 6,
+                    "type": "paid",
+                    "amount": 19,
+                    "date": "2024-07-02"
+                },
+                {
+                    "id": 7,
+                    "type": "paid",
+                    "amount": 75,
+                    "date": "2024-07-02"
+                },
+                {
+                    "id": 8,
+                    "type": "received",
+                    "amount": 75,
+                    "date": "2024-07-02"
+                },
+                {
+                    "id": 9,
+                    "type": "received",
+                    "amount": 9,
+                    "date": "2024-07-02"
+                },
+                {
+                    "id": 10,
+                    "type": "paid",
+                    "amount": 8,
+                    "date": "2024-07-02"
+                },
+                {
+                    "id": 11,
+                    "type": "paid",
+                    "amount": 600,
+                    "date": "7/6/2024"
+                },
+                {
+                    "id": 12,
+                    "type": "paid",
+                    "amount": 180,
+                    "date": "7/6/2024"
+                },
+                {
+                    "id": 13,
+                    "type": "received",
+                    "amount": 30,
+                    "date": "7/7/2024"
+                },
+                {
+                    "id": 14,
+                    "type": "paid",
+                    "amount": 20,
+                    "date": "7/12/2024"
+                },
+                {
+                    "id": 15,
+                    "type": "paid",
+                    "amount": 20,
+                    "date": "7/12/2024"
+                }
+            ],
+            "facial_data": "dd501442961502eadc323efb8117efd8"
         },
         {
-          "id": 3,
-          "type": "received",
-          "amount": 75,
-          "date": "2024-07-02"
+            "firstname": "Patol",
+            "lastname": "Asamoah",
+            "email": "asamoahgg10@yahoo.com",
+            "balance": 1695.77,
+            "transactions": [
+                {
+                    "id": 1,
+                    "type": "received",
+                    "amount": 189,
+                    "date": "2024-07-01"
+                },
+                {
+                    "id": 2,
+                    "type": "paid",
+                    "amount": 19,
+                    "date": "2024-04-03"
+                },
+                {
+                    "id": 3,
+                    "type": "received",
+                    "amount": 75,
+                    "date": "2024-17-02"
+                },
+                {
+                    "id": 4,
+                    "type": "received",
+                    "amount": 600,
+                    "date": "7/6/2024"
+                },
+                {
+                    "id": 5,
+                    "type": "received",
+                    "amount": 180,
+                    "date": "7/6/2024"
+                },
+                {
+                    "id": 6,
+                    "type": "received",
+                    "amount": 20,
+                    "date": "7/12/2024"
+                },
+                {
+                    "id": 7,
+                    "type": "received",
+                    "amount": 20,
+                    "date": "7/12/2024"
+                }
+            ]
+        },
+        {
+            "firstname": "Nicolas ",
+            "lastname": "Amanie",
+            "email": "nicolasaman330@gmail.com",
+            "balance": 6759,
+            "transactions": [
+                {
+                    "id": 1,
+                    "type": "received",
+                    "amount": 300,
+                    "date": "2024-11-04"
+                },
+                {
+                    "id": 2,
+                    "type": "paid",
+                    "amount": 50,
+                    "date": "2024-12-03"
+                },
+                {
+                    "id": 3,
+                    "type": "received",
+                    "amount": 75,
+                    "date": "2024-12-02"
+                }
+            ]
+        },
+        {
+            "firstname": "Daniel ",
+            "lastname": "Kofii",
+            "email": "danikaniik@outlook.com",
+            "balance": 910,
+            "transactions": [
+                {
+                    "id": 1,
+                    "type": "received",
+                    "amount": 100,
+                    "date": "2024-07-04"
+                },
+                {
+                    "id": 2,
+                    "type": "paid",
+                    "amount": 50,
+                    "date": "2024-07-03"
+                },
+                {
+                    "id": 3,
+                    "type": "received",
+                    "amount": 75,
+                    "date": "2024-07-02"
+                }
+            ]
+        },
+        {
+            "firstname": "Clinton ",
+            "lastname": "Yaw mathew",
+            "email": "nickolevv@gmail.com",
+            "balance": 870,
+            "transactions": []
+        },
+        {
+            "firstname": "james ",
+            "lastname": "Awugu",
+            "email": "deede@yahoo.com",
+            "balance": 870,
+            "transactions": []
         }
-      ]
-    },
-    {
-      "firstname": "Acheampong",
-      "lastname": "Clinton",
-      "balance": 15299153.68,
-      "email": "scitest@gmail.com",
-      "transactions": [
-        {
-          "id": 1,
-          "type": "received",
-          "amount": 100,
-          "date": "2024-07-04"
-        },
-        {
-          "id": 2,
-          "type": "paid",
-          "amount": 50,
-          "date": "2024-07-03"
-        },
-        {
-          "id": 3,
-          "type": "received",
-          "amount": 75,
-          "date": "2024-07-02"
-        },
-        {
-          "id": 4,
-          "type": "paid",
-          "amount": 75,
-          "date": "2024-07-02"
-        },
-        {
-          "id": 5,
-          "type": "received",
-          "amount": 20,
-          "date": "2024-07-02"
-        },
-        {
-          "id": 6,
-          "type": "paid",
-          "amount": 19,
-          "date": "2024-07-02"
-        },
-        {
-          "id": 7,
-          "type": "paid",
-          "amount": 75,
-          "date": "2024-07-02"
-        },
-        {
-          "id": 8,
-          "type": "received",
-          "amount": 75,
-          "date": "2024-07-02"
-        },
-        {
-          "id": 9,
-          "type": "received",
-          "amount": 9,
-          "date": "2024-07-02"
-        },
-        {
-          "id": 10,
-          "type": "paid",
-          "amount": 8,
-          "date": "2024-07-02"
-        },
-        {
-          "id": 11,
-          "type": "paid",
-          "amount": 600,
-          "date": "7/6/2024"
-        },
-        {
-          "id": 12,
-          "type": "paid",
-          "amount": 180,
-          "date": "7/6/2024"
-        },
-        {
-          "id": 13,
-          "type": "received",
-          "amount": 30,
-          "date": "7/7/2024"
-        },
-        {
-          "id": 14,
-          "type": "paid",
-          "amount": 20,
-          "date": "7/12/2024"
-        },
-        {
-          "id": 15,
-          "type": "paid",
-          "amount": 20,
-          "date": "7/12/2024"
-        }
-      ],
-      "facial_data": "dd501442961502eadc323efb8117efd8"
-    },
-    {
-      "firstname": "Patol",
-      "lastname": "Asamoah",
-      "email": "asamoahgg10@yahoo.com",
-      "balance": 1695.77,
-      "transactions": [
-        {
-          "id": 1,
-          "type": "received",
-          "amount": 189,
-          "date": "2024-07-01"
-        },
-        {
-          "id": 2,
-          "type": "paid",
-          "amount": 19,
-          "date": "2024-04-03"
-        },
-        {
-          "id": 3,
-          "type": "received",
-          "amount": 75,
-          "date": "2024-17-02"
-        },
-        {
-          "id": 4,
-          "type": "received",
-          "amount": 600,
-          "date": "7/6/2024"
-        },
-        {
-          "id": 5,
-          "type": "received",
-          "amount": 180,
-          "date": "7/6/2024"
-        },
-        {
-          "id": 6,
-          "type": "received",
-          "amount": 20,
-          "date": "7/12/2024"
-        },
-        {
-          "id": 7,
-          "type": "received",
-          "amount": 20,
-          "date": "7/12/2024"
-        }
-      ]
-    },
-    {
-      "firstname": "Nicolas ",
-      "lastname": "Amanie",
-      "email": "nicolasaman330@gmail.com",
-      "balance": 6759,
-      "transactions": [
-        {
-          "id": 1,
-          "type": "received",
-          "amount": 300,
-          "date": "2024-11-04"
-        },
-        {
-          "id": 2,
-          "type": "paid",
-          "amount": 50,
-          "date": "2024-12-03"
-        },
-        {
-          "id": 3,
-          "type": "received",
-          "amount": 75,
-          "date": "2024-12-02"
-        }
-      ]
-    },
-    {
-      "firstname": "Daniel ",
-      "lastname": "Kofii",
-      "email": "danikaniik@outlook.com",
-      "balance": 910,
-      "transactions": [
-        {
-          "id": 1,
-          "type": "received",
-          "amount": 100,
-          "date": "2024-07-04"
-        },
-        {
-          "id": 2,
-          "type": "paid",
-          "amount": 50,
-          "date": "2024-07-03"
-        },
-        {
-          "id": 3,
-          "type": "received",
-          "amount": 75,
-          "date": "2024-07-02"
-        }
-      ]
-    }
-  ]
+    ]
 }
