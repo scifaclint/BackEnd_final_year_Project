@@ -29,7 +29,7 @@
         {
             "firstname": "Acheampong",
             "lastname": "Clinton",
-            "balance": 15299353.68,
+            "balance": 15299373.68,
             "email": "scitest@gmail.com",
             "transactions": [
                 {
@@ -127,6 +127,12 @@
                     "type": "received",
                     "amount": 200,
                     "date": "8/23/2024"
+                },
+                {
+                    "id": 17,
+                    "type": "received",
+                    "amount": 20,
+                    "date": "8/24/2024"
                 }
             ],
             "facial_data": "dd501442961502eadc323efb8117efd8"
@@ -258,6 +264,55 @@
             "firstname": "niggaww",
             "lastname": "Mens ",
             "email": "walcot10@gmail.com",
+            "balance": 849.6,
+            "transactions": [
+                {
+                    "id": 1,
+                    "type": "paid",
+                    "amount": 20,
+                    "date": "8/24/2024"
+                }
+            ]
+        },
+        {
+            "firstname": "Acheampong",
+            "lastname": "Clinton",
+            "email": "clinton2@gmail.com",
+            "balance": 870,
+            "transactions": []
+        },
+        {
+            "firstname": "Acheampong",
+            "lastname": "Clinton",
+            "email": "yawzigi@gmail.com",
+            "balance": 870,
+            "transactions": []
+        },
+        {
+            "firstname": "Acheampong",
+            "lastname": "Clinton",
+            "email": "clintonyy@gmail.com",
+            "balance": 870,
+            "transactions": []
+        },
+        {
+            "firstname": "Jonh",
+            "lastname": "Wick",
+            "email": "wivkhone@gmail.com",
+            "balance": 870,
+            "transactions": []
+        },
+        {
+            "firstname": "Acheampong",
+            "lastname": "Clinton",
+            "email": "clintonyawa2@gmail.com",
+            "balance": 870,
+            "transactions": []
+        },
+        {
+            "firstname": "Acheampong",
+            "lastname": "Clinton",
+            "email": "Walcott78@gmail.com",
             "balance": 870,
             "transactions": []
         }

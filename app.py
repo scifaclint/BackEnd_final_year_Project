@@ -93,7 +93,7 @@ def transfer():
                 break
         # now save data
         save_database(userData)
-        return jsonify({"message": "Transaction Complete","ok":True}), 200
+        return jsonify({"message": "Transaction Complete", "ok": True}), 200
     else:
         return jsonify({"status": False, "message": "Error occured"}), 400
 
@@ -123,7 +123,9 @@ def addUser():
 def detect_analyse():
     request_data = request.get_json(force=True)
     base_64_image = request_data['image_base64']
+    print("here")
     email = request_data['email']
+    print("here")
     data = load_database()
     data_faces = model.load_face_data()
     model_results = model.enroll_face(base_64_image)
