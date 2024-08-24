@@ -94,7 +94,7 @@ def transfer():
                 break
         # now save data
         save_database(userData)
-        return jsonify({"message": "Transaction Complete"}), 200
+        return jsonify({"message": "Transaction Complete","ok":True}), 200
     else:
         return jsonify({"status": False, "message": "Error occured"}), 400
 

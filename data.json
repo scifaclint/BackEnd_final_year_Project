@@ -29,7 +29,7 @@
         {
             "firstname": "Acheampong",
             "lastname": "Clinton",
-            "balance": 15299153.68,
+            "balance": 15299353.68,
             "email": "scitest@gmail.com",
             "transactions": [
                 {
@@ -121,6 +121,12 @@
                     "type": "paid",
                     "amount": 20,
                     "date": "7/12/2024"
+                },
+                {
+                    "id": 16,
+                    "type": "received",
+                    "amount": 200,
+                    "date": "8/23/2024"
                 }
             ],
             "facial_data": "dd501442961502eadc323efb8117efd8"
@@ -231,13 +237,27 @@
             "firstname": "Clinton ",
             "lastname": "Yaw mathew",
             "email": "nickolevv@gmail.com",
-            "balance": 870,
-            "transactions": []
+            "balance": 666,
+            "transactions": [
+                {
+                    "id": 1,
+                    "type": "paid",
+                    "amount": 200,
+                    "date": "8/23/2024"
+                }
+            ]
         },
         {
             "firstname": "james ",
             "lastname": "Awugu",
             "email": "deede@yahoo.com",
+            "balance": 870,
+            "transactions": []
+        },
+        {
+            "firstname": "niggaww",
+            "lastname": "Mens ",
+            "email": "walcot10@gmail.com",
             "balance": 870,
             "transactions": []
         }
