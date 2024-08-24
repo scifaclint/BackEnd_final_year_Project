@@ -51,7 +51,6 @@ def compare_faces(face_token, old_userImage):
             "image_base64_2": old_userImage
 
         })
-        print(response.json())
         data = response.json()
         return ({"status": True, "confidence": data['confidence']})
     except Exception as err:
