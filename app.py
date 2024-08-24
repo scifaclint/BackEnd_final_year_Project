@@ -1,6 +1,5 @@
 from flask import Flask, jsonify, request
 from facialmodel import load_database, save_database, get_userData
-from facialmodel import procesImage
 from werkzeug.utils import secure_filename
 from model import model
 import json
